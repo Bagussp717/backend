@@ -72,6 +72,11 @@ var server = http.createServer(function(request,response){
         });
 
     }
+    else if (request.url==="/about" && request.method === "GET"){
+        response.writeHead(200, {"Content-Type": "text/html"});
+        response.write(renderAbout)
+        response.end("<br><a href='/'>Kembali</a>");
+    }
 });
 
 server.listen(port);
