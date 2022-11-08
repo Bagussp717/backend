@@ -14,7 +14,7 @@ function css(request, response) {
     
 }
 var renderCV = fs.readFileSync("./cv.html")
-var renderCV = fs.readFileSync("./about.html")
+var renderAbout = fs.readFileSync("./about.html")
 
 var server = http.createServer(function(request,response){
     css(request, response)
