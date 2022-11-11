@@ -15,6 +15,7 @@ function css(request, response) {
 }
 var renderCV = fs.readFileSync("./cv.html")
 var renderAbout = fs.readFileSync("./about.html")
+var renderHasil = fs.readFileSync("./hasil.html")
 
 var server = http.createServer(function(request,response){
     css(request, response)
@@ -22,7 +23,7 @@ var server = http.createServer(function(request,response){
     if (q.pathname == "/" && request.method == "GET"){
         var keyword = q.query.keyword;
         if (keyword){
-            fs.readFile("hasil.html",(error,data)=>{
+            fs.readFile("renderHasil.html",(error,data)=>{
                 if (error){
                     response.writeHead(404,{"Content-Type":"text/html"});
                     return response.end("404 Server Not Found");                
