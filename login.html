@@ -5,27 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form lgn</title>
+    <title>Sign In</title>
     <link rel="stylesheet"  href="style.css">
 </head>
 <body>
     <center>
+        
         <Form class="kotak ktklgn" action="/login" method="POST">
-            <label class="lblform" for="username">Username  </label>
-            <input class="inputForm" type="text" name="username" placeholder="Username....">
+            <p class="judul">Sign In</p>
+            
+            <input class="inputForm" type="text" name="username" placeholder="Username">
 
-            <label class="lblform" for="password">Password  </label>
-            <input class="inputForm" type="password" name="password" placeholder="Password....">
+            <input class="inputForm" type="password" name="password" placeholder="Password">
 
             
-                <input class="btnlgn" type="submit" value="Login">
+            <input class="btnlgn" type="submit" value="Login">
+            <div class="notMember">
+                Not a Member ? <span><a href="/regis">Sign Up</a></span>
+            </div>
             
-            <P>
-                Username:bagus<br>
-                Password:1121101999
-            </P>
             <a href="/" class="back">⇤ Back to Home</a>
+            
         </Form>
+        <br><P>
+            Username:bagus<br>
+            Password:1121101999
+        </P>
+       
 </center>
     
 
