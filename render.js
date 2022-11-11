@@ -23,7 +23,7 @@ var server = http.createServer(function(request,response){
     if (q.pathname == "/" && request.method == "GET"){
         var keyword = q.query.keyword;
         if (keyword){
-            fs.readFile("renderHasil.html",(error,data)=>{
+            fs.readFile(renderHasil,(error,data)=>{
                 if (error){
                     response.writeHead(404,{"Content-Type":"text/html"});
                     return response.end("404 Server Not Found");                
