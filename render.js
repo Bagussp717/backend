@@ -75,10 +75,90 @@ var server = http.createServer(function(request,response){
 
     }
     else if (request.url==="/about" && request.method === "GET"){
-        response.writeHead(200, {"Content-Type": "text/html"});
-        response.write(renderAbout)
-        response.end("<br><a href='/'>Kembali</a>");
+        fs.readFile("about.html",(error,data)=>{
+            if (error){
+                response.writeHead(404,{"Content-Type":"text/html"});
+                return response.end("404 Server Not Found");                
+            }
+            else{
+                response.writeHead(200, {"Content-Type":"text/html"});
+                response.write(data)
+                return response.end()
+            }
+        });
     }
+    else if (request.url==="/regis" && request.method === "GET"){
+        fs.readFile("regis.html",(error,data)=>{
+            if (error){
+                response.writeHead(404,{"Content-Type":"text/html"});
+                return response.end("404 Server Not Found");                
+            }
+            else{
+                response.writeHead(200, {"Content-Type":"text/html"});
+                response.write(data)
+                return response.end()
+            }
+        });
+    }
+    else if (request.url==="/regis" && request.method === "POST"){
+        
+        var requestReg = "";
+        request.on("data",function(data){
+            requestReg += data;
+        });
+        request.on("end",function(){
+            var formData = qs.parse(requestReg);
+            response.writeHead(200,{"Content-Type":"text/html"});
+            response.write(renderHasil)
+            response.write('<h1>Anda Berhasil Mendaftar Sebagai :</h1>')
+            response.write('<center>'+
+            '<table class="kotak">'+
+            '<tr>'+
+                '<th>'+
+                    'Nama '+
+                '</th>'+            
+                '<td>'+
+                    ': '+formData['fname'] +' '+ formData['lname']+
+                '</td>'+
+    
+            '</tr>'+
+            '<tr>'+
+                '<th>'+
+                    'Username '+
+                '</th>'+            
+                '<td>'+
+                    ': '+formData['username']+
+                '</td>'+
+    
+            '</tr>'+
+            '<tr>'+
+                '<th>'+
+                    'Email '+
+                '</th>'+            
+                '<td>'+
+                    ': '+formData['mail']+
+                '</td>'+
+    
+            '</tr>'+
+            '<tr>'+
+                '<th>'+
+                    'Telephone '+
+                '</th>'+            
+                '<td>'+
+                    ': '+formData['tel']+
+                '</td>'+
+    
+            '</tr>'+
+            
+            '</table>'+
+            '</center>'
+            );
+            response.end()
+  
+        });
+
+    }
+
 });
 
 server.listen(port);
