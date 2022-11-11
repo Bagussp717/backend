@@ -24,7 +24,7 @@ var server = http.createServer(function(request,response){
         var keyword = q.query.keyword;
         if (keyword){
             response.writeHead(200, {"Content-Type":"text/html"});
-            response.write(randerHasil)
+            response.write(renderHasil);
             response.write("<h2>Pencarian</h2>");
             response.write("<p>Anda Mencari : <b>" + keyword + "</b> </p>");
             response.write("<h3><b></b>Tidak ada Hasil ! Maaf Website ini masih dalam tahap pengembangan</b></h3>");
