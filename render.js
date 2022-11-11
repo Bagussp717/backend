@@ -22,23 +22,20 @@ var server = http.createServer(function(request,response){
     if (q.pathname == "/" && request.method == "GET"){
         var keyword = q.query.keyword;
         if (keyword){
-            response.writeHead(200, {"Content-Type": "text/html"});
-            response.write("<h2>Pencarian</h2>");
-            response.write("<p>Anda Mencari : <b>" + keyword + "</b> </p>");
-            response.write("<h3><b></b>Tidak ada Hasil ! Maaf Website ini masih dalam tahap pengembangan</b></h3>");
-            response.end("<a href='/'>Kembali</a>");
-            
-            
-            }
-        else{
-            fs.readFile("home.html",function(error,data){
+            fs.readFile("hasil.html",(error,data)=>{
                 if (error){
-                    response.writeHead(404,{"Conten-Type": "text/html"});
-                    response.end("404 Not Found");
+                    response.writeHead(404,{"Content-Type":"text/html"});
+                    return response.end("404 Server Not Found");                
                 }
-            response.writeHead(200,{"Content-Type":"text/html"});
-            response.write(data)
-            response.end();    
+                else{
+                    response.writeHead(200, {"Content-Type":"text/html"});
+                    response.write(data)
+                    response.write("<h2>Pencarian</h2>");
+                    response.write("<p>Anda Mencari : <b>" + keyword + "</b> </p>");
+                    response.write("<h3><b></b>Tidak ada Hasil ! Maaf Website ini masih dalam tahap pengembangan</b></h3>");
+                    response.end("<a class='back' href='/'>Kembali</a>");
+                    return response.end()
+                }
             });
         }
     }
